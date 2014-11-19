@@ -4,6 +4,7 @@ module.exports = function(app, models) {
   var utils     = require('connect').utils;
   var cookie    = require('cookie');
   var Session   = require('express-session');
+  
 
   var sio = io.listen(app.server)
 
@@ -15,7 +16,8 @@ module.exports = function(app, models) {
 
     sio.set('authorization', function( data, accept) {
       var signedCookies = cookie.parse(data.headers.cookie);
-      var cookies = utils.parseSignedCookies(signedCookies,app.sessionSecret);
+      //var cookies = utils.parseSignedCookies(signedCookies,app.sessionSecret);
+      var cookies = express.cookieParser(signedCookies);
       data.sessionID = cookies['express.sid'];
       data.sessionStore = app.sessionStore;
       data.sessionStore.get(data.sessionID, function(err, session) {

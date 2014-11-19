@@ -50,7 +50,8 @@ define(['SocialNetView', 'text!templates/contact.html'], function(SocialNetView,
     },
 
     render: function() {
-      $(this.el).html(_.template(contactTemplate, {
+      var template = _.template(contactTemplate);
+      $(this.el).html(template({
         model: this.model.toJSON(),
         addButton: this.addButton,
         removeButton: this.removeButton

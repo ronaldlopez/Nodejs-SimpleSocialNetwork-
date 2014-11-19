@@ -1,12 +1,13 @@
 define(['SocialNetView', 'text!templates/status.html'], function(SocialNetView, statusTemplate) {
-  var statusView = SocialNetView.extend({
+  	var statusView = SocialNetView.extend({
     tagName: 'li',
 
     render: function() {
-      $(this.el).html(_.template(statusTemplate,this.model.toJSON()));
-      return this;
-    }
-  });
+    		var template = _.template(statusTemplate);
+      		$(this.el).html(template({ status : this.model.attributes.status }));
+      		return this;
+    	}
+  	});
 
   return statusView;
 });

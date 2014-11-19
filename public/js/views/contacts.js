@@ -4,7 +4,7 @@ function(SocialNetView, ContactView, contactsTemplate) {
     el: $('#content'),
 
     initialize: function() {
-      this.collection.on('reset', this.renderCollection, this);
+      this.collection.on('renderCollection', this.renderCollection, this);
     },
 
     render: function() {
